@@ -48,7 +48,7 @@ public class GerenciamentoVotacao {
     }
 
     if (isExist) {
-      System.out.println("Número pessoa candidata já utilizado!");
+      System.out.println("Pessoa eleitora já cadastrada!");
     } else {
       PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
       this.pessoasEleitoras.add(pessoasEleitoras);
