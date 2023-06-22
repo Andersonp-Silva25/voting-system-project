@@ -34,8 +34,25 @@ public class GerenciamentoVotacao {
 
   }
 
+  /**
+   * Método para cadastrar a pessoa eleitora caso ainda não tenha sido cadastrada.
+   */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
 
+    boolean isExist = false;
+
+    for (PessoaEleitora pessoas : pessoasEleitoras) {
+      if (pessoas.getCpf() == cpf) {
+        isExist = true;
+      }
+    }
+
+    if (isExist) {
+      System.out.println("Número pessoa candidata já utilizado!");
+    } else {
+      PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
+      this.pessoasEleitoras.add(pessoasEleitoras);
+    }
   }
 
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
@@ -54,4 +71,5 @@ public class GerenciamentoVotacao {
   public Double calcularPorcentagemVotos(int indice) {
     return null;
   }
+
 }
