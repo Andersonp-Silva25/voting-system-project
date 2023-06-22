@@ -12,7 +12,25 @@ public class GerenciamentoVotacao {
   private ArrayList<String> cpfComputado = new ArrayList<String>();
   private int totalVotos = 0;
 
+  /**
+   * Método para cadastrar a pessoa candidata caso ainda não tenha sido cadastrada.
+   */
   public void cadastrarPessoaCandidata(String nome, int numero) {
+
+    boolean isExist = false;
+
+    for (PessoaCandidata pessoas : pessoasCandidatas) {
+      if (pessoas.getNumero() == numero) {
+        isExist = true;
+      }
+    }
+
+    if (isExist) {
+      System.out.println("Número pessoa candidata já utilizado!");
+    } else {
+      PessoaCandidata pessoasCandidatas = new PessoaCandidata(nome, numero);
+      this.pessoasCandidatas.add(pessoasCandidatas);
+    }
 
   }
 
