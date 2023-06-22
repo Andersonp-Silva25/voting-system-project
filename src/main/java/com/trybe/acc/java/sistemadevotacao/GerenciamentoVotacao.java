@@ -39,19 +39,24 @@ public class GerenciamentoVotacao {
    */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
 
-    boolean isCpfExist = false;
-
-    for (PessoaEleitora pessoas : pessoasEleitoras) {
-      if (pessoas.getCpf() == cpf) {
-        isCpfExist = true;
-      }
-    }
-
-    if (isCpfExist) {
-      System.out.println("Pessoa eleitora já cadastrada!");
+    if (this.pessoasEleitoras.size() == 0) {
+      this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
     } else {
-      PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
-      this.pessoasEleitoras.add(pessoasEleitoras);
+
+      boolean isCpfExist = false;
+
+      for (PessoaEleitora pessoas : pessoasEleitoras) {
+        if (pessoas.getCpf() == cpf) {
+          isCpfExist = true;
+        }
+      }
+
+      if (isCpfExist) {
+        System.out.println("Pessoa eleitora já cadastrada!");
+      } else {
+        PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
+        this.pessoasEleitoras.add(pessoasEleitoras);
+      }
     }
   }
 
