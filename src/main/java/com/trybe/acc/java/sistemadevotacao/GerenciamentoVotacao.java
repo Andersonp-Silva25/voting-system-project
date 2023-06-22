@@ -17,15 +17,15 @@ public class GerenciamentoVotacao {
    */
   public void cadastrarPessoaCandidata(String nome, int numero) {
 
-    boolean isExist = false;
+    boolean isNumberExist = false;
 
     for (PessoaCandidata pessoas : pessoasCandidatas) {
       if (pessoas.getNumero() == numero) {
-        isExist = true;
+        isNumberExist = true;
       }
     }
 
-    if (isExist) {
+    if (isNumberExist) {
       System.out.println("Número pessoa candidata já utilizado!");
     } else {
       PessoaCandidata pessoasCandidatas = new PessoaCandidata(nome, numero);
@@ -39,15 +39,15 @@ public class GerenciamentoVotacao {
    */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
 
-    boolean isExist = false;
+    boolean isCpfExist = false;
 
     for (PessoaEleitora pessoas : pessoasEleitoras) {
       if (pessoas.getCpf() == cpf) {
-        isExist = true;
+        isCpfExist = true;
       }
     }
 
-    if (isExist) {
+    if (isCpfExist) {
       System.out.println("Pessoa eleitora já cadastrada!");
     } else {
       PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
@@ -55,8 +55,30 @@ public class GerenciamentoVotacao {
     }
   }
 
+  /**
+   * Método para realizar o voto da pessoa eleitora.
+   */
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
 
+    boolean isVoted = false;
+
+    for (PessoaEleitora pessoas : pessoasEleitoras) {
+      if (this.cpfComputado.contains(pessoas.getCpf())) {
+        isVoted = true;
+      }
+    }
+
+    if (isVoted) {
+      System.out.println("Pessoa eleitora já votou!");
+    } else {
+      for (PessoaCandidata candidato : this.pessoasCandidatas) {
+        if (candidato.getNumero() == numeroPessoaCandidata) {
+          candidato.receberVoto();
+          this.cpfComputado.add(cpfPessoaEleitora);
+          this.totalVotos += 1;
+        }
+      }
+    }
   }
 
   /**
