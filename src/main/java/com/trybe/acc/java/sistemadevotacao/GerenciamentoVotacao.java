@@ -48,24 +48,19 @@ public class GerenciamentoVotacao {
     boolean isCpfExist = false;
 
     if (this.pessoasEleitoras.size() > 0) {
-
-      for (PessoaEleitora pessoas : pessoasEleitoras) {
-        if (pessoas.getCpf() == cpf) {
+      for (int x = 0; x < this.pessoasEleitoras.size(); x++) {
+        PessoaEleitora pessoa = this.pessoasEleitoras.get(x);
+        if (pessoa.getCpf() == cpf) {
           isCpfExist = true;
         }
       }
-
-      if (isCpfExist) {
-        System.out.println("Pessoa eleitora já cadastrada!");
-      } else {
-        PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
-        this.pessoasEleitoras.add(pessoasEleitoras);
-      }
-
-    } else {
-      this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
     }
 
+    if (!isCpfExist) {
+      this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
+    } else {
+      System.out.println("Pessoa eleitora já cadastrada!");
+    }
   }
 
   /**
