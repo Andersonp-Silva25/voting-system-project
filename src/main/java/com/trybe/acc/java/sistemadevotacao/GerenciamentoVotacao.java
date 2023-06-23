@@ -92,11 +92,23 @@ public class GerenciamentoVotacao {
   public void mostrarResultado() {
     if (totalVotos <= 0) {
       System.out.println("É preciso ter pelo menos um voto para mostrar o resultado.");
+    } else {
+      for (int x = 0; x < pessoasCandidatas.size(); x++) {
+        PessoaCandidata candidato = this.pessoasCandidatas.get(x);
+        System.out.println("Nome: " + candidato.getNome() + " - " + candidato.getVotos() + " ( "
+            + this.calcularPorcentagemVotos(x) + "% )");
+      }
+      System.out.println("Total de votos: " + this.totalVotos);
     }
   }
 
+  /**
+   * Método responsável por calcular a porcentagem de votos por candidato.
+   */
   public Double calcularPorcentagemVotos(int indice) {
-    return null;
+    PessoaCandidata candidato = this.pessoasCandidatas.get(indice);
+    double porcentagemDeVotos = ((double) candidato.getVotos() / this.totalVotos) * 100;
+    return (double) Math.round(porcentagemDeVotos);
   }
 
 }
