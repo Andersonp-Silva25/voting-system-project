@@ -19,17 +19,23 @@ public class GerenciamentoVotacao {
 
     boolean isNumberExist = false;
 
-    for (PessoaCandidata pessoas : pessoasCandidatas) {
-      if (pessoas.getNumero() == numero) {
-        isNumberExist = true;
-      }
-    }
+    if (this.pessoasCandidatas.size() > 0) {
 
-    if (isNumberExist) {
-      System.out.println("Número pessoa candidata já utilizado!");
+      for (PessoaCandidata pessoas : pessoasCandidatas) {
+        if (pessoas.getNumero() == numero) {
+          isNumberExist = true;
+        }
+      }
+
+      if (isNumberExist) {
+        System.out.println("Número pessoa candidata já utilizado!");
+      } else {
+        PessoaCandidata pessoasCandidatas = new PessoaCandidata(nome, numero);
+        this.pessoasCandidatas.add(pessoasCandidatas);
+      }
+
     } else {
-      PessoaCandidata pessoasCandidatas = new PessoaCandidata(nome, numero);
-      this.pessoasCandidatas.add(pessoasCandidatas);
+      this.pessoasCandidatas.add(new PessoaCandidata(nome, numero));
     }
 
   }
@@ -39,11 +45,9 @@ public class GerenciamentoVotacao {
    */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
 
-    if (this.pessoasEleitoras.size() == 0) {
-      this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
-    } else {
+    boolean isCpfExist = false;
 
-      boolean isCpfExist = false;
+    if (this.pessoasEleitoras.size() > 0) {
 
       for (PessoaEleitora pessoas : pessoasEleitoras) {
         if (pessoas.getCpf() == cpf) {
@@ -57,7 +61,11 @@ public class GerenciamentoVotacao {
         PessoaEleitora pessoasEleitoras = new PessoaEleitora(nome, cpf);
         this.pessoasEleitoras.add(pessoasEleitoras);
       }
+
+    } else {
+      this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
     }
+
   }
 
   /**
@@ -67,8 +75,8 @@ public class GerenciamentoVotacao {
 
     boolean isVoted = false;
 
-    for (PessoaEleitora pessoas : pessoasEleitoras) {
-      if (this.cpfComputado.contains(pessoas.getCpf())) {
+    if (this.cpfComputado.size() > 0) {
+      if (this.cpfComputado.contains(cpfPessoaEleitora)) {
         isVoted = true;
       }
     }
