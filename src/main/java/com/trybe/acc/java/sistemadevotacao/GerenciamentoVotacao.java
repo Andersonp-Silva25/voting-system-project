@@ -10,6 +10,7 @@ public class GerenciamentoVotacao {
   private ArrayList<PessoaCandidata> pessoasCandidatas = new ArrayList<PessoaCandidata>();
   private ArrayList<PessoaEleitora> pessoasEleitoras = new ArrayList<PessoaEleitora>();
   private ArrayList<String> cpfComputado = new ArrayList<String>();
+  private ArrayList<String> cpfPessoaEleitora = new ArrayList<String>();
   private int totalVotos = 0;
 
   /**
@@ -47,17 +48,15 @@ public class GerenciamentoVotacao {
 
     boolean isCpfExist = false;
 
-    if (this.pessoasEleitoras.size() > 0) {
-      for (int x = 0; x < this.pessoasEleitoras.size(); x++) {
-        PessoaEleitora pessoa = this.pessoasEleitoras.get(x);
-        if (pessoa.getCpf() == cpf) {
-          isCpfExist = true;
-        }
+    if (this.cpfPessoaEleitora.size() > 0) {
+      if (this.cpfPessoaEleitora.contains(cpf)) {
+        isCpfExist = true;
       }
     }
 
     if (!isCpfExist) {
       this.pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
+      this.cpfPessoaEleitora.add(cpf);
     } else {
       System.out.println("Pessoa eleitora já cadastrada!");
     }
