@@ -97,8 +97,8 @@ public class GerenciamentoVotacao {
     } else {
       for (int x = 0; x < pessoasCandidatas.size(); x++) {
         PessoaCandidata candidato = this.pessoasCandidatas.get(x);
-        System.out.println("Nome: " + candidato.getNome() + " - " + candidato.getVotos() + " ( "
-            + this.calcularPorcentagemVotos(x) + "% )");
+        System.out.println("Nome: " + candidato.getNome() + " - " + candidato.getVotos()
+            + " votos ( " + this.calcularPorcentagemVotos(x) + "% )");
       }
       System.out.println("Total de votos: " + this.totalVotos);
     }
